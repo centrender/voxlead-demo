@@ -3,14 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VoxLead.Agency - Personalized Demo</title>
-    <!-- Tailwind for fast styling -->
+    <title>Lead Capture Audit - Live Demo</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Icons -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
-        
+       
         /* THE PHONE FRAME (CSS Only iPhone) */
         .phone-mockup {
             width: 300px;
@@ -20,12 +18,11 @@
             border: 8px solid #333;
             position: relative;
             margin: 0 auto;
-            overflow: hidden;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
             flex-shrink: 0;
             z-index: 10;
         }
-        
+       
         /* The Notch */
         .phone-notch {
             position: absolute;
@@ -103,18 +100,21 @@
         .chat-header { padding: 15px; background: #2563EB; color: white; display: flex; justify-content: space-between; align-items: center; padding-top: 45px; }
         .chat-messages { flex: 1; padding: 15px; overflow-y: auto; background: #f3f4f6; display: flex; flex-direction: column; gap: 10px; }
         .chat-input-area { padding: 10px; border-top: 1px solid #ddd; background: white; display: flex; gap: 5px; }
-        
+       
         .msg { padding: 8px 12px; border-radius: 12px; max-width: 80%; font-size: 13px; }
         .msg.bot { background: white; color: #333; align-self: flex-start; border: 1px solid #e5e7eb; }
         .msg.user { background: #2563EB; color: white; align-self: flex-end; }
-        
+       
         .typing-indicator { font-size: 12px; color: #9ca3af; margin-left: 10px; margin-bottom: 5px; display: none; }
+
+        /* CALENDAR STYLES */
+        .cal-item { transition: all 0.2s; border: 2px solid transparent; }
+        .cal-item.selected { background-color: #2563EB; color: white; border-color: #2563EB; transform: scale(1.05); box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.5); }
 
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800">
 
-    <!-- NAV BAR -->
     <nav class="bg-white border-b border-gray-200 p-4 sticky top-0 z-50">
         <div class="max-w-5xl mx-auto flex justify-between items-center">
             <div class="font-bold text-xl text-blue-600 tracking-tight">VoxLead<span class="text-slate-800">.Agency</span></div>
@@ -122,112 +122,96 @@
         </div>
     </nav>
 
-    <!-- HERO SECTION -->
     <section class="max-w-6xl mx-auto py-12 px-4 text-center">
         <h1 class="text-3xl md:text-5xl font-extrabold mb-3 text-slate-900">Your C.A.S.H. Audit Results</h1>
         <p class="text-gray-500 mb-12 text-lg">Personalized Analysis for: <span id="biz-name-display" class="font-bold text-blue-600">Your Business</span></p>
 
-        <!-- TWIN PILLARS CONTAINER -->
-        <!-- items-stretch forces the Left Card to match the Phone Height automatically -->
         <div class="flex flex-col md:flex-row items-center md:items-stretch justify-center gap-0 md:gap-10">
-            
-            <!-- LEFT: THE PAIN CARD (Navy Blue Edition) -->
-            <!-- Removed h-[640px], added h-auto so it stretches to match phone -->
+           
             <div class="w-full md:w-[340px] h-auto bg-white rounded-[30px] shadow-2xl border border-slate-200 flex flex-col overflow-hidden relative group hover:shadow-[0_20px_60px_-15px_rgba(30,58,138,0.2)] transition-all duration-300 z-0">
-                
-                <!-- Navy Blue Header -->
+               
                 <div class="bg-slate-900 p-6">
                     <div class="flex justify-between items-center">
-                        <h2 class="text-lg font-bold text-white leading-tight text-left">Business Efficiency<br>Report</h2>
-                        <span class="bg-red-600 text-white text-xl font-black px-3 py-1 rounded-lg border border-red-500">34/100</span>
+                        <h2 class="text-lg font-bold text-white leading-tight text-left">Emergency<br>Leak Report</h2>
+                        <span class="bg-red-600 text-white text-xl font-black px-3 py-1 rounded-lg border border-red-500">CRITICAL</span>
                     </div>
                 </div>
-                
+               
                 <div class="p-6 flex flex-col h-full bg-white">
-                    
-                    <!-- SUB-HEADER: Critical Issues -->
+                   
                     <div class="flex items-center gap-2 mb-4 mt-1">
                         <i class="fas fa-exclamation-circle text-red-600"></i>
                         <h3 class="text-xs font-bold text-red-600 uppercase tracking-widest">Critical Issues Found</h3>
                     </div>
-                    
-                    <!-- THE LIST (Tightened Spacing) -->
+                   
                     <div class="space-y-4 flex-1">
                         <div class="flex justify-between items-center border-b border-gray-50 pb-2">
-                            <span class="text-gray-600 text-sm font-medium">Auto-Lead Capture</span>
-                            <span class="text-red-600 font-bold text-xs bg-red-50 px-2 py-1 rounded"><i class="fas fa-times-circle"></i> MISSING</span>
+                            <span class="text-gray-600 text-sm font-medium">After-Hours Emergency</span>
+                            <span class="text-red-600 font-bold text-xs bg-red-50 px-2 py-1 rounded"><i class="fas fa-times-circle"></i> VOICEMAIL</span>
                         </div>
                         <div class="flex justify-between items-center border-b border-gray-50 pb-2">
-                            <span class="text-gray-600 text-sm font-medium">After-Hours Response</span>
-                            <span class="text-red-600 font-bold text-xs bg-red-50 px-2 py-1 rounded"><i class="fas fa-battery-empty"></i> OFFLINE (0%)</span>
+                            <span class="text-gray-600 text-sm font-medium">Response Time</span>
+                            <span class="text-red-600 font-bold text-xs bg-red-50 px-2 py-1 rounded"><i class="fas fa-battery-empty"></i> > 15 MINS</span>
                         </div>
                         <div class="flex justify-between items-center border-b border-gray-50 pb-2">
-                            <span class="text-gray-600 text-sm font-medium">Google Maps Traffic</span>
-                            <span class="text-orange-500 font-bold text-xs bg-orange-50 px-2 py-1 rounded"><i class="fas fa-exclamation-triangle"></i> AT RISK</span>
+                            <span class="text-gray-600 text-sm font-medium">Lead Capture Rate</span>
+                            <span class="text-orange-500 font-bold text-xs bg-orange-50 px-2 py-1 rounded"><i class="fas fa-exclamation-triangle"></i> LOW</span>
                         </div>
                          <div class="flex justify-between items-center border-b border-gray-50 pb-2">
                             <span class="text-gray-600 text-sm font-medium">Competitor Status</span>
-                            <span class="text-red-600 font-bold text-xs bg-red-50 px-2 py-1 rounded"><i class="fas fa-skull-crossbones"></i> STEALING LEADS</span>
+                            <span class="text-red-600 font-bold text-xs bg-red-50 px-2 py-1 rounded"><i class="fas fa-skull-crossbones"></i> TAKING JOBS</span>
                         </div>
                     </div>
 
-                    <!-- REVENUE SECTION (Bottom Anchor) -->
                     <div class="mt-auto">
                         <div class="bg-red-50 p-5 rounded-2xl border border-red-100 text-center relative mb-4">
-                            <p class="text-[10px] text-red-500 font-bold uppercase tracking-widest mb-1">Est. Monthly Revenue Leaking</p>
-                            <p id="lost-revenue-display" class="text-4xl font-extrabold text-red-600 tracking-tight">-$4,500/mo</p>
-                            <p class="text-[10px] text-gray-400 mt-2 italic px-2">Based on avg. lead value & missed traffic for your industry</p>
+                            <p class="text-[10px] text-red-500 font-bold uppercase tracking-widest mb-1">Est. Monthly Loss (1 Job/Week)</p>
+                            <p id="lost-revenue-display" class="text-4xl font-extrabold text-red-600 tracking-tight">-$12,500/mo</p>
+                            <p class="text-[10px] text-gray-400 mt-2 italic px-2">Based on avg. restoration job value ($3k+)</p>
                         </div>
 
-                        <!-- FOOTER BUTTON -->
-                        <a href="#" onclick="alert('This would open the full PDF report.'); return false;" class="w-full py-3 rounded-xl border border-slate-200 text-slate-600 font-semibold text-xs text-center hover:bg-slate-900 hover:text-white transition flex items-center justify-center gap-2">
+                        <button onclick="openReport()" class="w-full py-3 rounded-xl border border-slate-200 text-slate-600 font-semibold text-xs text-center hover:bg-slate-900 hover:text-white transition flex items-center justify-center gap-2 cursor-pointer">
                             <i class="fas fa-file-pdf text-red-500"></i> View Full C.A.S.H. Report
-                        </a>
+                        </button>
                     </div>
                 </div>
             </div>
 
-            <!-- ARROW (Desktop only) -->
             <div class="hidden md:flex flex-col items-center justify-center text-blue-600 text-3xl animate-pulse z-20 w-12">
                 <i class="fas fa-arrow-right"></i>
             </div>
 
-            <!-- RIGHT: THE SOLUTION (Phone Mockup - 640px Height) -->
             <div class="phone-mockup">
                 <div class="phone-notch"></div>
                 <div class="phone-screen">
-                    <!-- Website Loads Here -->
                     <iframe id="preview-frame" class="site-preview" src=""></iframe>
-                    
-                    <!-- Fallback if iframe blocks -->
+                   
                     <div id="iframe-fallback" class="absolute inset-0 bg-gray-100 flex flex-col items-center justify-center p-6 text-center hidden">
                         <div class="mb-6 text-5xl opacity-20">🔒</div>
                         <h3 class="font-bold text-lg mb-2 text-slate-800">Website Security Active</h3>
-                        <p class="text-sm text-gray-500 mb-6 px-4">This website prevents external previews, but our Chat Agent is fully active.</p>
+                        <p class="text-sm text-gray-500 mb-6 px-4">This website prevents external previews, but our Chat Agent is fully active on top of it.</p>
                         <button onclick="toggleChat()" class="bg-blue-600 text-white px-6 py-3 rounded-full text-sm font-semibold shadow-lg hover:bg-blue-700 transition transform hover:-translate-y-1">Test Chat Agent</button>
                     </div>
 
-                    <!-- Chat Bubble -->
                     <div class="chat-bubble-btn" onclick="toggleChat()">
                         <i class="fas fa-comment-alt text-2xl"></i>
                     </div>
 
-                    <!-- Chat Interface -->
                     <div class="chat-interface" id="chat-interface">
                         <div class="chat-header">
                             <div class="flex items-center gap-3">
                                 <div class="w-9 h-9 rounded-full bg-white text-blue-600 flex items-center justify-center font-bold text-sm shadow-sm">AI</div>
                                 <div>
-                                    <div class="text-sm font-bold">Assistant</div>
-                                    <div class="text-[10px] opacity-80 flex items-center gap-1"><span class="w-1.5 h-1.5 bg-green-400 rounded-full"></span> Online Now</div>
+                                    <div class="text-sm font-bold">Dispatch Agent</div>
+                                    <div class="text-[10px] opacity-80 flex items-center gap-1"><span class="w-1.5 h-1.5 bg-green-400 rounded-full"></span> Active Now</div>
                                 </div>
                             </div>
                             <button onclick="toggleChat()" class="text-white opacity-80 hover:opacity-100 transition"><i class="fas fa-times text-lg"></i></button>
                         </div>
                         <div class="chat-messages" id="chat-msgs"></div>
-                        <div class="typing-indicator" id="typing-indicator">AI is typing...</div>
+                        <div class="typing-indicator" id="typing-indicator">Agent is typing...</div>
                         <div class="chat-input-area">
-                            <input type="text" id="chat-input" placeholder="Type a message..." class="flex-1 border-0 bg-gray-100 rounded-full px-4 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                            <input type="text" id="chat-input" placeholder="Ask about water damage..." class="flex-1 border-0 bg-gray-100 rounded-full px-4 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
                             <button onclick="sendMessage()" class="bg-blue-600 text-white w-9 h-9 rounded-full flex items-center justify-center hover:bg-blue-700 transition"><i class="fas fa-paper-plane text-xs"></i></button>
                         </div>
                     </div>
@@ -237,91 +221,97 @@
         </div>
     </section>
 
-    <!-- VOICE AGENT SECTION -->
     <section class="bg-white py-16 border-t border-gray-100">
         <div class="max-w-3xl mx-auto px-4 text-center">
-            <h2 class="text-3xl font-bold mb-4 text-slate-900">AI Voice Employee</h2>
-            <p class="text-gray-500 mb-10">She'll role play with you as a representative for <span class="biz-name-fill font-bold text-slate-800">your business</span>.</p>
-            
+            <h2 class="text-3xl font-bold mb-4 text-slate-900">AI Voice Dispatcher</h2>
+            <p class="text-gray-500 mb-10">Listen to how she handles a frantic customer for <span class="biz-name-fill font-bold text-slate-800">your business</span>.</p>
+           
             <div class="bg-slate-50 p-10 rounded-[30px] flex flex-col items-center gap-6 shadow-sm border border-slate-100">
                 <div class="relative">
                     <img src="https://img.freepik.com/free-photo/young-beautiful-woman-customer-service-operator-headset_140725-16479.jpg" alt="AI Agent" class="w-24 h-24 rounded-full object-cover border-4 border-white shadow-xl">
                     <div class="absolute bottom-1 right-1 w-5 h-5 bg-green-500 border-2 border-white rounded-full"></div>
                 </div>
-                
+               
                 <div class="space-y-4">
                     <a href="tel:3238709970" class="inline-flex items-center gap-3 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-8 py-4 rounded-full text-xl font-bold transition-all transform hover:-translate-y-1 shadow-lg shadow-orange-500/30">
                         <i class="fas fa-phone-alt animate-pulse"></i>
                         Call (323) 870-9970
                     </a>
-                    <p class="text-xs text-gray-400">Standard calling rates may apply • 24/7 Availability</p>
+                    <p class="text-xs text-gray-400">Test the Voice Agent Live • 24/7 Availability</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- BOOKING SECTION -->
     <section id="book" class="max-w-4xl mx-auto py-16 px-4">
         <div class="bg-white rounded-2xl shadow-xl border border-gray-100 p-8 md:p-12 flex flex-col md:flex-row gap-10">
             <div class="md:w-1/3">
                 <div class="font-bold text-blue-600 mb-2 text-sm tracking-wide uppercase">VoxLead.Agency</div>
-                <h3 class="text-3xl font-bold mb-4 text-slate-900">Personalized Demo</h3>
-                <div class="flex items-center gap-2 text-gray-500 text-sm mb-6">
-                    <i class="far fa-clock"></i> 30 Min Session
-                </div>
-                <p class="text-gray-500 text-sm leading-relaxed">
-                    Book a quick demo to see exactly how AI Chat and Voice Agents engage your website visitors instantly. We'll answer specific questions about your business.
+                <h3 class="text-3xl font-bold mb-4 text-slate-900">Claim This System</h3>
+                <p class="text-gray-500 text-sm leading-relaxed mb-6">
+                    Stop losing jobs to missed calls. Book a quick 15-min setup call to get this AI answering your phones by tomorrow.
                 </p>
             </div>
-            
-            <!-- FAKE CALENDAR MOCKUP -->
+           
             <div class="md:w-2/3 border-l border-gray-100 pl-0 md:pl-10 pt-4 md:pt-0">
                 <h4 class="font-bold mb-6 text-slate-800">Select Date & Time</h4>
-                <div class="grid grid-cols-4 gap-3 text-center text-sm mb-6">
-                    <div class="p-3 cursor-pointer hover:bg-gray-50 rounded-xl border border-transparent hover:border-gray-200 transition">Mon<br><span class="font-bold text-lg">18</span></div>
-                    <div class="p-3 cursor-pointer hover:bg-gray-50 rounded-xl border border-transparent hover:border-gray-200 transition">Tue<br><span class="font-bold text-lg">19</span></div>
-                    <div class="p-3 bg-blue-600 text-white rounded-xl shadow-lg transform scale-105">Wed<br><span class="font-bold text-lg">20</span></div>
-                    <div class="p-3 cursor-pointer hover:bg-gray-50 rounded-xl border border-transparent hover:border-gray-200 transition">Thu<br><span class="font-bold text-lg">21</span></div>
+               
+                <div class="grid grid-cols-4 gap-3 text-center text-sm mb-6" id="date-grid">
+                    <div class="cal-item p-3 cursor-pointer bg-gray-50 rounded-xl" onclick="selectDate(this, 'Mon 18')">Mon<br><span class="font-bold text-lg">18</span></div>
+                    <div class="cal-item p-3 cursor-pointer bg-gray-50 rounded-xl" onclick="selectDate(this, 'Tue 19')">Tue<br><span class="font-bold text-lg">19</span></div>
+                    <div class="cal-item p-3 cursor-pointer bg-gray-50 rounded-xl" onclick="selectDate(this, 'Wed 20')">Wed<br><span class="font-bold text-lg">20</span></div>
+                    <div class="cal-item p-3 cursor-pointer bg-gray-50 rounded-xl" onclick="selectDate(this, 'Thu 21')">Thu<br><span class="font-bold text-lg">21</span></div>
                 </div>
-                <div class="grid grid-cols-2 gap-4">
-                    <button class="border border-blue-600 bg-blue-50 text-blue-700 py-3 rounded-lg font-semibold text-sm">9:00 AM</button>
-                    <button class="border border-gray-200 py-3 rounded-lg text-gray-600 hover:border-gray-300 hover:bg-gray-50 transition text-sm">10:00 AM</button>
-                    <button class="border border-gray-200 py-3 rounded-lg text-gray-600 hover:border-gray-300 hover:bg-gray-50 transition text-sm">1:00 PM</button>
-                    <button class="border border-gray-200 py-3 rounded-lg text-gray-600 hover:border-gray-300 hover:bg-gray-50 transition text-sm">3:30 PM</button>
+
+                <div class="grid grid-cols-2 gap-4" id="time-grid">
+                    <button class="cal-item border border-gray-200 py-3 rounded-lg text-gray-600 text-sm w-full" onclick="selectTime(this, '9:00 AM')">9:00 AM</button>
+                    <button class="cal-item border border-gray-200 py-3 rounded-lg text-gray-600 text-sm w-full" onclick="selectTime(this, '10:00 AM')">10:00 AM</button>
+                    <button class="cal-item border border-gray-200 py-3 rounded-lg text-gray-600 text-sm w-full" onclick="selectTime(this, '1:00 PM')">1:00 PM</button>
+                    <button class="cal-item border border-gray-200 py-3 rounded-lg text-gray-600 text-sm w-full" onclick="selectTime(this, '3:30 PM')">3:30 PM</button>
                 </div>
-                <button onclick="alert('Demo Appointment Confirmed for Wednesday 20th at 9:00 AM!')" class="w-full mt-8 bg-slate-900 text-white py-4 rounded-xl font-bold hover:bg-slate-800 transition shadow-lg">Confirm Booking</button>
+
+                <button onclick="bookAppointment()" class="w-full mt-8 bg-slate-900 text-white py-4 rounded-xl font-bold hover:bg-slate-800 transition shadow-lg">Confirm Booking</button>
+                <p id="book-error" class="text-red-500 text-xs text-center mt-2 hidden">Please select a Date and Time first.</p>
             </div>
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer class="bg-slate-900 text-slate-400 py-10 text-center text-sm">
-        <p class="mb-2">&copy; 2025 VoxLead.Agency. All rights reserved.</p>
-        <p class="text-xs opacity-50">Empowering Local Businesses with AI</p>
+        <p class="mb-2">&copy; 2025 VoxLead.Agency.</p>
     </footer>
 
     <script>
+        // ==========================================
+        //  YOUR SETTINGS (EDIT THESE 2 LINES)
+        // ==========================================
+        const SETTINGS = {
+            cashReportUrl: "https://YOUR-CASH-ANALYZER-LINK-HERE.com", // Paste your C.A.S.H. link inside the quotes
+            bookingEmail: "YOUR-EMAIL@GMAIL.COM" // Paste your email inside the quotes
+        };
+        // ==========================================
+
+
         // 1. SETUP
         const params = new URLSearchParams(window.location.search);
         const businessName = params.get('name') || "Your Business";
         const siteUrl = params.get('site');
-        const lostRevenue = params.get('lost') || "4,500"; 
+        const lostRevenue = params.get('lost') || "12,500";
 
         // Update Text
         document.getElementById('biz-name-display').innerText = businessName;
         document.querySelectorAll('.biz-name-fill').forEach(el => el.innerText = businessName);
-        
+       
         // Update Revenue
         document.getElementById('lost-revenue-display').innerText = `-$${lostRevenue}/mo`;
 
         // Update Iframe
         const iframe = document.getElementById('preview-frame');
         const fallback = document.getElementById('iframe-fallback');
-        
+       
         if (siteUrl) {
             let safeUrl = siteUrl.startsWith('http') ? siteUrl : 'https://' + siteUrl;
             iframe.src = safeUrl;
-            
+           
             iframe.onerror = () => {
                 iframe.style.display = 'none';
                 fallback.classList.remove('hidden');
@@ -333,20 +323,63 @@
             fallback.classList.add('flex');
         }
 
-        // 2. SMART AI LOGIC
+        // 2. REPORT LINK LOGIC
+        function openReport() {
+            window.open(SETTINGS.cashReportUrl, '_blank');
+        }
+
+        // 3. CALENDAR LOGIC
+        let selectedDate = null;
+        let selectedTime = null;
+
+        function selectDate(element, dateValue) {
+            // Reset styles
+            document.querySelectorAll('#date-grid .cal-item').forEach(el => el.classList.remove('selected', 'bg-blue-600', 'text-white'));
+            document.querySelectorAll('#date-grid .cal-item').forEach(el => el.classList.add('bg-gray-50'));
+            
+            // Set active style
+            element.classList.remove('bg-gray-50');
+            element.classList.add('selected', 'bg-blue-600', 'text-white');
+            
+            selectedDate = dateValue;
+            document.getElementById('book-error').classList.add('hidden');
+        }
+
+        function selectTime(element, timeValue) {
+            // Reset styles
+            document.querySelectorAll('#time-grid .cal-item').forEach(el => el.classList.remove('selected', 'bg-blue-600', 'text-white'));
+           
+            // Set active style
+            element.classList.add('selected', 'bg-blue-600', 'text-white');
+           
+            selectedTime = timeValue;
+            document.getElementById('book-error').classList.add('hidden');
+        }
+
+        function bookAppointment() {
+            if(!selectedDate || !selectedTime) {
+                document.getElementById('book-error').classList.remove('hidden');
+                return;
+            }
+            // Create the email link
+            const subject = `Booking Request: ${businessName}`;
+            const body = `Hi, I would like to book the VoxLead demo on ${selectedDate} at ${selectedTime}. My business name is ${businessName}.`;
+            const mailtoLink = `mailto:${SETTINGS.bookingEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+           
+            // Open email client
+            window.location.href = mailtoLink;
+        }
+
+        // 4. SMART AI LOGIC (WATER DAMAGE EDITION)
         const knowledgeBase = [
-            { keywords: ["hours", "open", "close", "time"], answer: "We are typically open 9am-5pm, but our AI agents answer the phones 24/7/365. Do you want to see how that works?" },
-            { keywords: ["human", "person", "real", "agent"], answer: "I am an AI assistant, but I can transfer you to a human team member instantly if needed. That is the power of this system!" },
-            { keywords: ["price", "cost", "quote", "expensive", "cheap"], answer: "I can provide instant quotes based on your specific needs! Since I'm a demo, I can't see your price list yet, but I'd love to show you how I handle sales inquiries." },
-            { keywords: ["location", "address", "where", "map"], answer: "We serve the local area! A fully customized AI agent would instantly text your exact location and Google Maps link to the customer." },
-            { keywords: ["parking", "park", "lot"], answer: "Yes, we have parking available! An AI agent can even text parking instructions to your visitors so they never get lost." },
-            { keywords: ["service", "do you do", "offer"], answer: "We offer a wide range of services! Whether it's bookings, support, or sales, I can handle it all. What specific service are you looking for?" },
-            { keywords: ["phone", "call", "number"], answer: "You can reach us at (323) 870-9970. In fact, if you click the 'Call' button on this page, you can test our Voice AI agent right now!" },
-            { keywords: ["email", "contact", "message"], answer: "You can email us, or just chat with me right here! I capture leads instantly so you don't have to wait for an email reply." },
-            { keywords: ["appointment", "book", "schedule", "calendar"], answer: "I can help you schedule that! We have openings this Thursday and Friday. Do you prefer mornings or afternoons?" },
-            { keywords: ["cancel", "refund", "money"], answer: "I can handle cancellations or refund requests according to your policy, saving your staff from awkward conversations." },
-            { keywords: ["website", "link", "url"], answer: "I am living on your website right now! I work on mobile and desktop to capture every visitor." },
-            { keywords: ["reviews", "rating", "stars"], answer: "We love 5-star reviews! I can automatically ask happy customers to leave a review right after our conversation." }
+            { keywords: ["flood", "water", "leak", "burst", "emergency", "wet"], answer: "I understand this is an emergency. Our team is available 24/7 for water extraction. Is the water still flowing, or has it been stopped?" },
+            { keywords: ["stopped", "stop", "off"], answer: "Good. Since the water is stopped, we need to get a crew out immediately to prevent mold growth. Can I have your address to check dispatch availability?" },
+            { keywords: ["mold", "smell", "mildew"], answer: "Mold can start growing within 24-48 hours. We are certified in mold remediation. We should inspect this ASAP." },
+            { keywords: ["insurance", "cost", "price", "bill"], answer: "We work directly with all major insurance carriers (State Farm, Allstate, etc.) to handle the billing for you. We can document the damage for your claim immediately." },
+            { keywords: ["human", "person", "real", "agent"], answer: "I am the AI Dispatcher, but I can patch you through to the on-call technician instantly if you click the 'Call' button below." },
+            { keywords: ["hours", "open", "time"], answer: "We are open 24/7/365 for emergencies. Disasters don't wait for business hours, and neither do we." },
+            { keywords: ["phone", "call", "number"], answer: "You can reach our emergency line at (323) 870-9970." },
+            { keywords: ["appointment", "book"], answer: "For water damage, we don't 'book appointments' next week—we send a crew NOW. Would you like us to dispatch a truck?" }
         ];
 
         const chatInterface = document.getElementById('chat-interface');
@@ -359,7 +392,7 @@
             chatInterface.classList.toggle('open');
             if (chatInterface.classList.contains('open') && !hasOpened) {
                 hasOpened = true;
-                setTimeout(() => botReply(`Hi! Welcome to ${businessName}. How can I help you today?`), 500);
+                setTimeout(() => botReply(`Hello. This is the 24/7 Emergency Assistant for ${businessName}. Do you have a water emergency?`), 500);
             }
         }
 
@@ -375,7 +408,7 @@
                 typingIndicator.style.display = 'none';
                 const response = getSmartResponse(text);
                 botReply(response);
-            }, 1500);
+            }, 1000);
         }
 
         function getSmartResponse(userInput) {
@@ -385,7 +418,7 @@
                     return item.answer;
                 }
             }
-            return "That's a great specific question! As an AI demo, I don't have that info yet, but a fully trained agent for your business would know the answer instantly. Want to see how?";
+            return "I see. Because this might be an emergency situation, I'd like to get a technician to call you immediately. What is the best number to reach you?";
         }
 
         function botReply(text) {
